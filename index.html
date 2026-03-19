@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Ош — 3000 лет истории на Шелковом пути</title>
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ===== ОБНУЛЕНИЕ И ПЕРЕМЕННЫЕ ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --black: #0a0c0f;
+            --black-light: #1a1e24;
+            --black-lighter: #2a2e34;
+            --gold: #c7a23b;
+            --gold-light: #e9d185;
+            --gold-dark: #9e7e2c;
+            --white: #ffffff;
+            --gray: #e5e5e5;
+            --gray-dark: #b0b0b0;
+            --gray-darker: #6c757d;
+            --gradient-gold: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-dark));
+            --gradient-dark: linear-gradient(135deg, var(--black), var(--black-light));
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            --shadow-gold: 0 10px 30px rgba(199, 162, 59, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--black);
+            color: var(--gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ===== АДАПТИВНЫЙ КОНТЕЙНЕР ===== */
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        @media (min-width: 576px) {
+            .container { padding: 0 30px; }
+        }
+        @media (min-width: 768px) {
+            .container { padding: 0 40px; }
+        }
+        @media (min-width: 992px) {
+            .container { padding: 0 50px; }
+        }
+
+        /* ===== КАСТОМНЫЙ СКРОЛЛ ===== */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: var(--black-light); }
+        ::-webkit-scrollbar-thumb { 
+            background: var(--gold); 
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
+
+        /* ===== ТИПОГРАФИКА ===== */
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .section-title {
+            font-size: clamp(32px, 6vw, 64px);
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100px;
+            height: 4px;
+            background: var(--gradient-gold);
+        }
+
+        .gold-text {
+            background: var(--gradient-gold);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ===== ХЕДЕР ===== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 20px 0;
+            transition: var(--transition);
+            background: rgba(10, 12, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(199, 162, 59, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: clamp(20px, 4vw, 28px);
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .logo span {
+            color: var(--gold);
+            font-size: 1.2em;
+        }
+
+        /* ===== ЯЗЫКОВОЙ ПЕРЕКЛЮЧАТЕЛЬ ===== */
+        .lang-switch {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: 1px solid rgba(199, 162, 59, 0.3);
+            color: var(--gray);
+            padding: 8px 16px;
+            cursor: pointer;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .lang-btn:hover {
+            border-color: var(--gold);
+            background: rgba(199, 162, 59, 0.1);
+        }
+
+        .lang-btn.active {
+            background: var(--gradient-gold);
+            color: var(--black);
+            border-color: transparent;
+        }
+
+        /* ===== ГЕРОЙ ===== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 100px 0;
+            background: var(--black);
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(199, 162, 59, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(199, 162, 59, 0.05) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(14px, 3vw, 18px);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(40px, 10vw, 120px);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .hero-desc {
+            font-size: clamp(16px, 4vw, 20px);
+            max-width: 700px;
+            margin-bottom: 40px;
+            color: var(--gray-dark);
+        }
+
+        /* ===== СЕКЦИИ ===== */
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        @media (min-width: 768px) {
+            section { padding: 120px 0; }
+        }
+
+        section:nth-child(even) {
+            background: var(--black-light);
+        }
+
+        /* ===== ГРИДЫ ===== */
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 30px;
+        }
+
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-3 { grid-template-columns: 1fr; }
+        .grid-4 { grid-template-columns: 1fr; }
+
+        @media (min-width: 640px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 768px) {
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 992px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (min-width: 1200px) {
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* ===== КАРТОЧКИ ===== */
+        .card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(199, 162, 59, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: var(--transition);
+            height: 100%;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--gold);
+            box-shadow: var(--shadow-gold);
+        }
+
+        .card-content {
+            padding: 30px;
+        }
+
+        .card-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--white);
+            position: relative;
+            display: inline-block;
+        }
+
+        .card-title::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--gradient-gold);
+        }
+
+        .card-text {
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        /* ===== ИСТОРИЯ (ТАЙМЛАЙН) ===== */
+        .history-timeline {
+            display: grid;
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .history-item {
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+
+        .history-year {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--gold);
+            opacity: 0.7;
+            line-height: 1;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .history-content {
+            background: rgba(255,255,255,0.02);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 4px solid var(--gold);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .history-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(199,162,59,0.1) 0%, transparent 70%);
+        }
+
+        .history-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+
+        /* ===== СПИСОК ДОСТОПРИМЕЧАТЕЛЬНОСТЕЙ ===== */
+        .place-meta {
+            display: flex;
+            gap: 15px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .place-meta span {
+            background: rgba(199, 162, 59, 0.1);
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 14px;
+            color: var(--gold);
+            border: 1px solid rgba(199, 162, 59, 0.2);
+        }
+
+        /* ===== СТАТИСТИКА ===== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .stat-box {
+            background: rgba(199, 162, 59, 0.05);
+            padding: 40px 20px;
+            border-radius: 15px;
+            text-align: center;
+            border: 1px solid rgba(199, 162, 59, 0.1);
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            border-color: var(--gold);
+            background: rgba(199, 162, 59, 0.08);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--gold);
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 16px;
+            color: var(--gray-dark);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* ===== ПРОГРЕСС БАРЫ ===== */
+        .progress-item {
+            margin-bottom: 25px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-gold);
+            border-radius: 4px;
+            width: 0;
+            transition: width 1s ease;
+        }
+
+        /* ===== ТАБЛИЦА КЛИМАТА ===== */
+        .climate-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255,255,255,0.02);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .climate-table th {
+            background: rgba(199, 162, 59, 0.1);
+            padding: 15px;
+            text-align: left;
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        .climate-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .climate-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ===== ФУТЕР ===== */
+        footer {
+            background: var(--black-light);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(199, 162, 59, 0.1);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 992px) {
+            .footer-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: var(--gray-dark);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: var(--gray-darker);
+            font-size: 14px;
+        }
+
+        /* ===== КНОПКИ ===== */
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: var(--gradient-gold);
+            color: var(--black);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-gold);
+        }
+
+        /* ===== ДЕКОРАТИВНЫЕ ЭЛЕМЕНТЫ ===== */
+        .decor-line {
+            height: 2px;
+            background: var(--gradient-gold);
+            width: 100px;
+            margin: 20px 0;
+        }
+
+        .quote {
+            font-size: 24px;
+            font-style: italic;
+            color: var(--gold-light);
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            padding: 40px;
+            border-left: 4px solid var(--gold);
+            background: rgba(199, 162, 59, 0.05);
+            border-radius: 0 20px 20px 0;
+        }
+
+        /* ===== АДАПТИВНЫЕ НАСТРОЙКИ ===== */
+        @media (max-width: 768px) {
+            .history-item {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .history-year {
+                font-size: 36px;
+            }
+            
+            .quote {
+                font-size: 18px;
+                padding: 20px;
+            }
+        }
+
+        /* ===== ДЕКОРАТИВНЫЙ ФОН ===== */
+        .bg-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.02;
+            pointer-events: none;
+            background-image: 
+                linear-gradient(45deg, var(--gold) 1px, transparent 1px),
+                linear-gradient(-45deg, var(--gold) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+    </style>
+</head>
+<body>
+    <header id="header">
+        <div class="container header-content">
+            <div class="logo"><span>◈</span> ОШ <span>◈</span></div>
+            <div class="lang-switch">
+                <button class="lang-btn active" data-lang="ru">РУС</button>
+                <button class="lang-btn" data-lang="kg">КЫР</button>
+                <button class="lang-btn" data-lang="en">ENG</button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ГЕРОЙ -->
+        <section class="hero">
+            <div class="bg-pattern"></div>
+            <div class="container hero-content">
+                <div class="hero-subtitle" data-key="heroSubtitle">ЮЖНАЯ СТОЛИЦА КЫРГЫЗСТАНА</div>
+                <h1 class="hero-title"><span class="gold-text">ОШ</span></h1>
+                <div class="hero-desc" data-key="heroDesc">Город с 3000-летней историей, священная гора Сулайман-Тоо и перекресток Великого Шелкового пути</div>
+                <a href="#about" class="btn" data-key="heroBtn">УЗНАТЬ БОЛЬШЕ</a>
+            </div>
+        </section>
+
+        <!-- О ГОРОДЕ -->
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title" data-key="aboutTitle">О ГОРОДЕ</h2>
+                <div class="grid-2">
+                    <div>
+                        <p style="font-size: 20px; margin-bottom: 30px; line-height: 1.8;" data-key="aboutText1">Ош — второй по величине город Кыргызстана, неофициально именуемый «южной столицей». Расположен на юге страны, в предгорьях Алайского хребта, в долине реки Ак-Буура. Это один из древнейших городов Центральной Азии с историей, насчитывающей более 3000 лет.</p>
+                        <p style="color: var(--gray-dark); line-height: 1.8;" data-key="aboutText2">Город знаменит своей архитектурой, национальной кухней, а также уникальным природным памятником — священной горой Сулайман-Тоо, включённой в список объектов Всемирного наследия ЮНЕСКО.</p>
+                    </div>
+                    <div>
+                        <div class="stats-grid">
+                            <div class="stat-box">
+                                <div class="stat-number">473 500</div>
+                                <div class="stat-label" data-key="population">население (2025)</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">3000+</div>
+                                <div class="stat-label" data-key="years">лет истории</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number">182</div>
+                                <div class="stat-label" data-key="area">км² площадь</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ИСТОРИЯ -->
+        <section>
+            <div class="container">
+                <h2 class="section-title" data-key="historyTitle">ИСТОРИЯ</h2>
+                <div class="history-timeline">
+                    <div class="history-item">
+                        <div class="history-year">X в.</div>
+                        <div class="history-content">
+                            <h3>Эпоха Караханидов</h3>
+                            <p data-key="history1">В X веке Ош считался третьим по величине городом Ферганы, являясь точкой пересечения караванных путей из Индии и Китая в Европу. В XI–XII веках входил в состав тюркского каганата Караханидов.</p>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">1220</div>
+                        <div class="history-content">
+                            <h3>Монгольское нашествие</h3>
+                            <p data-key="history2">В 1220 году Ош был захвачен ордами Чингис-хана и вошёл в состав Чагатайского улуса. В 1340-е годы стал частью Моголистана, а в 1380-е годы вошёл в империю Тимура.</p>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">1876</div>
+                        <div class="history-content">
+                            <h3>В составе Российской империи</h3>
+                            <p data-key="history3">В 1876 году после завоевания Кокандского ханства Ош вошёл в состав Российской империи как административный центр Ошского уезда Ферганской области.</p>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">1939</div>
+                        <div class="history-content">
+                            <h3>Областной центр</h3>
+                            <p data-key="history4">В 1939 году стал центром Ошской области. За годы Советской власти город превратился в крупный промышленный центр с хлопчатобумажным и шёлковым комбинатами.</p>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="history-year">2000</div>
+                        <div class="history-content">
+                            <h3>3000-летие Оша</h3>
+                            <p data-key="history5">В 2000 году по указу президента Кыргызстана было торжественно отмечено 3000-летие Оша. С тех пор 5 октября отмечается День города.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- СУЛАЙМАН-ТОО -->
+        <section>
+            <div class="container">
+                <h2 class="section-title" data-key="suleimanTitle">СУЛАЙМАН-ТОО</h2>
+                <div class="grid-2">
+                    <div>
+                        <div class="quote" data-key="suleimanDesc1">«Главная достопримечательность Оша — священная гора Сулайман-Тоо («Трон Соломона»). Она внесена в список Всемирного наследия ЮНЕСКО с 2009 года. Гора является местом паломничества уже более тысячи лет, её иногда называют «второй Меккой».</div>
+                    </div>
+                    <div>
+                        <p style="color: var(--gray-dark); line-height: 1.8; margin-bottom: 20px;" data-key="suleimanDesc2">На склонах горы обнаружены древние земледельческие поселения эпохи бронзы. Именно с ними связывают возникновение города Оша. Здесь находятся наскальные изображения, связанные с культом горы и плодородия (XIII-V вв. до н.э.).</p>
+                        <div class="place-meta">
+                            <span>ЮНЕСКО</span>
+                            <span>1100 м</span>
+                            <span>12 пещер</span>
+                            <span>петроглифы</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- МУЗЕЙНЫЙ КОМПЛЕКС -->
+        <section>
+            <div class="container">
+                <h2 class="section-title" data-key="museumTitle">МУЗЕЙ «СУЛАЙМАН-ТОО»</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-key="museumSubtitle1">Историко-археологический музей</h3>
+                            <p class="card-text" data-key="museumDesc1">Национальный историко-археологический музейный комплекс «Сулайман-Тоо» — один из крупнейших музеев Кыргызстана, расположенный в уникальном сооружении пещерного комплекса горы. Музей основан в 1949 году, современное здание построено в 1978 году в честь 3000-летия Оша. Оно высечено внутри горы и представляет собой застеклённую бетонную арку.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-key="museumSubtitle2">Музей духовной культуры</h3>
+                            <p class="card-text" data-key="museumDesc2">Единственный музей в Кыргызстане, залы которого расположены в пещерном комплексе горы (пещера Рушан-Ункур). Экспозиция представляет религии и верования, существовавшие на территории юга Кыргызстана на протяжении 3000 лет. Ярко представлена культура доисламских верований.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card" style="margin-top: 30px;">
+                    <div class="card-content">
+                        <p class="card-text" data-key="museumCollection">В собрании музея около 35 тысяч предметов археологии и этнографии, кустарного промысла, живописи, скульптуры и графики.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ДОСТОПРИМЕЧАТЕЛЬНОСТИ -->
+        <section>
+            <div class="container">
+                <h2 class="section-title" data-key="placesTitle">ДОСТОПРИМЕЧАТЕЛЬНОСТИ</h2>
+                <div class="grid-3">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">Мечеть Рават Абдуллахана</h3>
+                            <p class="card-text" data-key="place1">Самая древняя из сохранившихся мечетей Оша. Построена на фундаменте XI-XII вв. В записках Бабура XV в. именуется как Масжид-и-Джауза. Восстановлена в 1990 году.</p>
+                            <div class="place-meta">
+                                <span>XI век</span>
+                                <span>действующая</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">Мавзолей Асаф ибн Бурхия</h3>
+                            <p class="card-text" data-key="place2">Комплекс XVIII века, назван по имени визиря царя Соломона. Построен в традициях ферганской архитектурной школы. На самом деле имеет более глубокую историю, уходящую корнями в XI век.</p>
+                            <div class="place-meta">
+                                <span>XVIII век</span>
+                                <span>бухарская архитектура</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">Ак-Бууринское городище</h3>
+                            <p class="card-text" data-key="place3">Памятник истории эпохи доарабского Оша (III в. до н.э. – VIII в. н.э.). Было одной из древнейших оборонительных крепостей Ошского оазиса. Сохранились элементы стен и башен.</p>
+                            <div class="place-meta">
+                                <span>III в. до н.э.</span>
+                                <span>крепость</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">Парк им. Токтогула Сатылганова</h3>
+                            <p class="card-text" data-key="place4">Первый парк в истории Оша. Заложен русскими переселенцами в 1919 году. Площадь 12 га, более 20 наименований деревьев. Реконструирован в 2019 году.</p>
+                            <div class="place-meta">
+                                <span>1919 год</span>
+                                <span>12 га</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">Михайло-Архангельский храм</h3>
+                            <p class="card-text" data-key="place5">Единственный в Оше памятник русской православной архитектуры начала XX века. Действующий храм.</p>
+                            <div class="place-meta">
+                                <span>православный</span>
+                                <span>действующий</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title">Гарнизонная крепость</h3>
+                            <p class="card-text" data-key="place6">Построена в 80-х годах XIX века. Здесь сохранился приказ Сталина 1943 года, высеченный на стене. В 1978 году отсюда отправили первый батальон в Афганистан.</p>
+                            <div class="place-meta">
+                                <span>XIX век</span>
+                                <span>исторический</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ИНТЕРЕСНЫЕ ФАКТЫ -->
+        <section>
+            <div class="container">
+                <h2 class="section-title" data-key="factsTitle">ИНТЕРЕСНЫЕ ФАКТЫ</h2>
+                <div class="grid-4">
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-key="fact1Title">Этимология названия</h3>
+                            <p class="card-text" data-key="fact1">По преданию, царь Соломон (Сулайман) вёл войско и, увидев это место, крикнул: «Хош!» («Остановись!»), что дало название городу. Другая версия — от персидского «хош» (приятный).</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-key="fact2Title">Тандыры Оша</h3>
+                            <p class="card-text" data-key="fact2">В Оше делают тандыры вручную уже более 2000 лет. В глину добавляют шерсть барана или козы. Процесс занимает три дня. Мастерская Сирожиддина Акромова у подножия Сулайман-Тоо отправляет тандыры даже в Россию.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-key="fact3Title">Памятник Ленину</h3>
+                            <p class="card-text" data-key="fact3">Памятник В.И. Ленину на центральной площади — единственный в СНГ, который не демонтировали. Высота 23 метра, фигура отлита в Санкт-Петербурге.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-content">
+                            <h3 class="card-title" data-key="fact4Title">Пещера Чакка-Тамар</h3>
+                            <p class="card-text" data-key="fact4">Священная пещера на горе Сулайман-Тоо, называемая «пещерой эха» или «падающими каплями». Каждый звук в ней приобретает мистическое звучание. Считается, что здесь можно просить о рождении детей.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КУЛЬТУРА И НАСЕЛЕНИЕ -->
+        <section>
+            <div class="container">
+                <h2 class="section-title" data-key="cultureTitle">КУЛЬТУРА И НАСЕЛЕНИЕ</h2>
+                <div class="grid-2">
+                    <div>
+                        <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--white);" data-key="nationalities">Национальный состав</h3>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Кыргызы</span>
+                                <span>55%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 55%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Узбеки</span>
+                                <span>40%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 40%;"></div>
+                            </div>
+                        </div>
+                        <div class="progress-item">
+                            <div class="progress-label">
+                                <span>Другие</span>
+                                <span>5%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 5%;"></div>
+                            </div>
+                        </div>
+                        <p style="color: var(--gray-dark); margin-top: 30px;" data-key="cultureText1">В Оше проживают представители разных национальностей: киргизы, узбеки, русские, турки, татары, таджики и другие. Город является культурным плавильным котлом, где доминируют кыргызские и узбекские традиции.</p>
+                    </div>
+                    <div>
+                        <h3 style="font-size: 24px; margin-bottom: 20px; color: var(--white);" data-key="religion">Религия</h3>
+                        <p style="color: var(--gray-dark); line-height: 1.8;" data-key="cultureText2">Ош имеет сильное исламское влияние, множество мечетей и медресе. В городе также есть православный храм. Гостеприимство здесь — закон жизни: чай и хлеб — центр кыргызского гостеприимства.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- КЛИМАТ -->
+        <section>
+            <div class="container">
+                <h2 class="section-title" data-key="climateTitle">КЛИМАТ</h2>
+                <div class="grid-2">
+                    <div>
+                        <p style="color: var(--gray-dark); line-height: 1.8; margin-bottom: 20px;" data-key="climateDesc">Климат города — континентальный, засушливый. Лучшее время для посещения — с апреля по сентябрь, когда температура от +20 до +33°C. Зима мягкая по сравнению с севером Кыргызстана.</p>
+                    </div>
+                    <div>
+                        <table class="climate-table">
+                            <tr>
+                                <th>Месяц</th>
+                                <th>Янв</th>
+                                <th>Фев</th>
+                                <th>Мар</th>
+                                <th>Апр</th>
+                                <th>Май</th>
+                                <th>Июн</th>
+                                <th>Июл</th>
+                                <th>Авг</th>
+                                <th>Сен</th>
+                                <th>Окт</th>
+                                <th>Ноя</th>
+                                <th>Дек</th>
+                            </tr>
+                            <tr>
+                                <td>°C</td>
+                                <td>-2</td>
+                                <td>1</td>
+                                <td>8</td>
+                                <td>16</td>
+                                <td>21</td>
+                                <td>26</td>
+                                <td>28</td>
+                                <td>26</td>
+                                <td>21</td>
+                                <td>14</td>
+                                <td>6</td>
+                                <td>0</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);" data-key="footerAbout">О городе</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-key="footerHistory">История</a></li>
+                        <li><a href="#" data-key="footerPlaces">Достопримечательности</a></li>
+                        <li><a href="#" data-key="footerCulture">Культура</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);" data-key="footerInfo">Информация</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-key="footerClimate">Климат</a></li>
+                        <li><a href="#" data-key="footerFacts">Интересные факты</a></li>
+                        <li><a href="#" data-key="footerGallery">Галерея</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);" data-key="footerMuseum">Музей</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-key="footerMuseum1">Историко-археологический</a></li>
+                        <li><a href="#" data-key="footerMuseum2">Музей духовной культуры</a></li>
+                        <li><a href="#" data-key="footerMuseum3">Музей искусств</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="margin-bottom: 20px; color: var(--white);" data-key="footerHeritage">Наследие</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" data-key="footerUnesco">Объект ЮНЕСКО</a></li>
+                        <li><a href="#" data-key="footerSilkroad">Великий Шелковый путь</a></li>
+                        <li><a href="#" data-key="footerTraditions">Традиции</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span data-key="footerCopyright">© 2026 ОШ — 3000 ЛЕТ ИСТОРИИ НА ШЕЛКОВОМ ПУТИ</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Переводы
+        const translations = {
+            ru: {
+                heroSubtitle: 'ЮЖНАЯ СТОЛИЦА КЫРГЫЗСТАНА',
+                heroDesc: 'Город с 3000-летней историей, священная гора Сулайман-Тоо и перекресток Великого Шелкового пути',
+                heroBtn: 'УЗНАТЬ БОЛЬШЕ',
+                aboutTitle: 'О ГОРОДЕ',
+                aboutText1: 'Ош — второй по величине город Кыргызстана, неофициально именуемый «южной столицей». Расположен на юге страны, в предгорьях Алайского хребта, в долине реки Ак-Буура. Это один из древнейших городов Центральной Азии с историей, насчитывающей более 3000 лет.',
+                aboutText2: 'Город знаменит своей архитектурой, национальной кухней, а также уникальным природным памятником — священной горой Сулайман-Тоо, включённой в список объектов Всемирного наследия ЮНЕСКО.',
+                population: 'население (2025)',
+                years: 'лет истории',
+                area: 'км² площадь',
+                historyTitle: 'ИСТОРИЯ',
+                history1: 'В X веке Ош считался третьим по величине городом Ферганы, являясь точкой пересечения караванных путей из Индии и Китая в Европу. В XI–XII веках входил в состав тюркского каганата Караханидов.',
+                history2: 'В 1220 году Ош был захвачен ордами Чингис-хана и вошёл в состав Чагатайского улуса. В 1340-е годы стал частью Моголистана, а в 1380-е годы вошёл в империю Тимура.',
+                history3: 'В 1876 году после завоевания Кокандского ханства Ош вошёл в состав Российской империи как административный центр Ошского уезда Ферганской области.',
+                history4: 'В 1939 году стал центром Ошской области. За годы Советской власти город превратился в крупный промышленный центр с хлопчатобумажным и шёлковым комбинатами.',
+                history5: 'В 2000 году по указу президента Кыргызстана было торжественно отмечено 3000-летие Оша. С тех пор 5 октября отмечается День города.',
+                suleimanTitle: 'СУЛАЙМАН-ТОО',
+                suleimanDesc1: 'Главная достопримечательность Оша — священная гора Сулайман-Тоо («Трон Соломона»). Она внесена в список Всемирного наследия ЮНЕСКО с 2009 года. Гора является местом паломничества уже более тысячи лет, её иногда называют «второй Меккой».',
+                suleimanDesc2: 'На склонах горы обнаружены древние земледельческие поселения эпохи бронзы. Именно с ними связывают возникновение города Оша. Здесь находятся наскальные изображения, связанные с культом горы и плодородия (XIII-V вв. до н.э.).',
+                museumTitle: 'МУЗЕЙ «СУЛАЙМАН-ТОО»',
+                museumSubtitle1: 'Историко-археологический музей',
+                museumDesc1: 'Национальный историко-археологический музейный комплекс «Сулайман-Тоо» — один из крупнейших музеев Кыргызстана, расположенный в уникальном сооружении пещерного комплекса горы. Музей основан в 1949 году, современное здание построено в 1978 году в честь 3000-летия Оша. Оно высечено внутри горы и представляет собой застеклённую бетонную арку.',
+                museumSubtitle2: 'Музей духовной культуры',
+                museumDesc2: 'Единственный музей в Кыргызстане, залы которого расположены в пещерном комплексе горы (пещера Рушан-Ункур). Экспозиция представляет религии и верования, существовавшие на территории юга Кыргызстана на протяжении 3000 лет. Ярко представлена культура доисламских верований.',
+                museumCollection: 'В собрании музея около 35 тысяч предметов археологии и этнографии, кустарного промысла, живописи, скульптуры и графики.',
+                placesTitle: 'ДОСТОПРИМЕЧАТЕЛЬНОСТИ',
+                place1: 'Самая древняя из сохранившихся мечетей Оша. Построена на фундаменте XI-XII вв. В записках Бабура XV в. именуется как Масжид-и-Джауза. Восстановлена в 1990 году.',
+                place2: 'Комплекс XVIII века, назван по имени визиря царя Соломона. Построен в традициях ферганской архитектурной школы. На самом деле имеет более глубокую историю, уходящую корнями в XI век.',
+                place3: 'Памятник истории эпохи доарабского Оша (III в. до н.э. – VIII в. н.э.). Было одной из древнейших оборонительных крепостей Ошского оазиса. Сохранились элементы стен и башен.',
+                place4: 'Первый парк в истории Оша. Заложен русскими переселенцами в 1919 году. Площадь 12 га, более 20 наименований деревьев. Реконструирован в 2019 году.',
+                place5: 'Единственный в Оше памятник русской православной архитектуры начала XX века. Действующий храм.',
+                place6: 'Построена в 80-х годах XIX века. Здесь сохранился приказ Сталина 1943 года, высеченный на стене. В 1978 году отсюда отправили первый батальон в Афганистан.',
+                factsTitle: 'ИНТЕРЕСНЫЕ ФАКТЫ',
+                fact1Title: 'Этимология названия',
+                fact1: 'По преданию, царь Соломон (Сулайман) вёл войско и, увидев это место, крикнул: «Хош!» («Остановись!»), что дало название городу. Другая версия — от персидского «хош» (приятный).',
+                fact2Title: 'Тандыры Оша',
+                fact2: 'В Оше делают тандыры вручную уже более 2000 лет. В глину добавляют шерсть барана или козы. Процесс занимает три дня. Мастерская Сирожиддина Акромова у подножия Сулайман-Тоо отправляет тандыры даже в Россию.',
+                fact3Title: 'Памятник Ленину',
+                fact3: 'Памятник В.И. Ленину на центральной площади — единственный в СНГ, который не демонтировали. Высота 23 метра, фигура отлита в Санкт-Петербурге.',
+                fact4Title: 'Пещера Чакка-Тамар',
+                fact4: 'Священная пещера на горе Сулайман-Тоо, называемая «пещерой эха» или «падающими каплями». Каждый звук в ней приобретает мистическое звучание. Считается, что здесь можно просить о рождении детей.',
+                cultureTitle: 'КУЛЬТУРА И НАСЕЛЕНИЕ',
+                nationalities: 'Национальный состав',
+                cultureText1: 'В Оше проживают представители разных национальностей: киргизы, узбеки, русские, турки, татары, таджики и другие. Город является культурным плавильным котлом, где доминируют кыргызские и узбекские традиции.',
+                religion: 'Религия',
+                cultureText2: 'Ош имеет сильное исламское влияние, множество мечетей и медресе. В городе также есть православный храм. Гостеприимство здесь — закон жизни: чай и хлеб — центр кыргызского гостеприимства.',
+                climateTitle: 'КЛИМАТ',
+                climateDesc: 'Климат города — континентальный, засушливый. Лучшее время для посещения — с апреля по сентябрь, когда температура от +20 до +33°C. Зима мягкая по сравнению с севером Кыргызстана.',
+                footerAbout: 'О городе',
+                footerHistory: 'История',
+                footerPlaces: 'Достопримечательности',
+                footerCulture: 'Культура',
+                footerInfo: 'Информация',
+                footerClimate: 'Климат',
+                footerFacts: 'Интересные факты',
+                footerGallery: 'Галерея',
+                footerMuseum: 'Музей',
+                footerMuseum1: 'Историко-археологический',
+                footerMuseum2: 'Музей духовной культуры',
+                footerMuseum3: 'Музей искусств',
+                footerHeritage: 'Наследие',
+                footerUnesco: 'Объект ЮНЕСКО',
+                footerSilkroad: 'Великий Шелковый путь',
+                footerTraditions: 'Традиции',
+                footerCopyright: '© 2026 ОШ — 3000 ЛЕТ ИСТОРИИ НА ШЕЛКОВОМ ПУТИ'
+            },
+            kg: {
+                heroSubtitle: 'КЫРГЫЗСТАНДЫН ТҮШТҮК БОРБОРУ',
+                heroDesc: '3000 жылдык тарыхы бар шаар, ыйык Сулайман-Тоо жана Улуу Жибек Жолунун кесилиши',
+                heroBtn: 'КӨБҮРӨӨК БИЛҮҮ',
+                aboutTitle: 'ШААР ЖӨНҮНДӨ',
+                aboutText1: 'Ош — Кыргызстандын экинчи чоң шаары, расмий эмес «түштүк борбор» деп аталат. Өлкөнүн түштүгүндө, Алай кырка тоосунун этегинде, Ак-Буура дарыясынын өрөөнүндө жайгашкан. Бул Борбордук Азиянын эң байыркы шаарларынын бири, тарыхы 3000 жылдан ашат.',
+                aboutText2: 'Шаар өзүнүн архитектурасы, улуттук тамак-ашы, ошондой эле ЮНЕСКОнун Бүткүл дүйнөлүк мурастар тизмесине кирген уникалдуу жаратылыш эстелиги — ыйык Сулайман-Тоо менен атактуу.',
+                population: 'калкы (2025)',
+                years: 'жылдык тарых',
+                area: 'км² аянты',
+                historyTitle: 'ТАРЫХ',
+                history1: 'X кылымда Ош Фергананын үчүнчү чоң шаары болуп, Индиядан жана Кытайдан Европага кербен жолдорунун кесилиш чекити болгон. XI-XII кылымдарда Карахандар түрк каганатынын курамында болгон.',
+                history2: '1220-жылы Ош Чыңгыз-хандын колдору тарабынан басылып алынып, Чагатай улусунун курамына кирген. 1340-жылдары Моголистандын, ал эми 1380-жылдары Тимур империясынын курамына кирген.',
+                history3: '1876-жылы Кокон хандыгы басып алынгандан кийин Ош Орусия империясынын курамына Фергана облусунун Ош уездинин административдик борбору катары кирген.',
+                history4: '1939-жылы Ош облусунун борбору болуп калган. Совет бийлигинин жылдарында шаар пахта жана жибек комбинаттары менен ири өнөр жай борборуна айланган.',
+                history5: '2000-жылы Кыргызстандын президентинин жарлыгы менен Оштун 3000 жылдыгы салтанаттуу белгиленген. Ошондон бери 5-октябрь Шаар күнү катары белгиленет.',
+                suleimanTitle: 'СУЛАЙМАН-ТОО',
+                suleimanDesc1: 'Оштун башкы көрүнүктүү жери — ыйык Сулайман-Тоо («Сулаймандын такты»). Ал 2009-жылдан бери ЮНЕСКОнун Бүткүл дүйнөлүк мурастар тизмесине киргизилген. Тоо миң жылдан ашык убакыттан бери зыярат кылуучу жай болуп, кээде «экинчи Мекка» деп аталат.',
+                suleimanDesc2: 'Тоонун капталдарынан коло доорунун байыркы дыйканчылык отурукташуулары табылган. Ош шаарынын пайда болушу ушулар менен байланыштырылат. Бул жерде тоо жана түшүмдүүлүк культуна байланыштуу аска сүрөттөрү (б.з.ч. XIII-V кк.) жайгашкан.',
+                museumTitle: '«СУЛАЙМАН-ТОО» МУЗЕЙИ',
+                museumSubtitle1: 'Тарых-археология музейи',
+                museumDesc1: '«Сулайман-Тоо» улуттук тарых-археология музей комплекси — Кыргызстандын эң ири музейлеринин бири, тоонун үңкүр комплексиндеги уникалдуу курулушта жайгашкан. Музей 1949-жылы негизделген, азыркы имараты 1978-жылы Оштун 3000 жылдыгына карата курулган. Ал тоонун ичинде оюлуп, айнектелген бетон аркасын түзөт.',
+                museumSubtitle2: 'Рухий маданият музейи',
+                museumDesc2: 'Кыргызстандагы жалгыз музей, анын залдары тоонун үңкүр комплексинде (Рушан-Үңкүр) жайгашкан. Экспозиция Кыргызстандын түштүгүндө 3000 жыл бою болгон диндерди жана ишенимдерди көрсөтөт. Исламга чейинки ишенимдердин маданияты көркөм көрсөтүлгөн.',
+                museumCollection: 'Музейдин жыйнагында археология жана этнография, кол өнөрчүлүк, живопись, скульптура жана графиканын 35 миңге жакын экспонаты бар.',
+                placesTitle: 'КӨРҮНҮКТҮҮ ЖЕРЛЕР',
+                place1: 'Оштун сакталып калган эң байыркы мечити. XI-XII кылымдардын пайдубалында курулган. Бабурдун XV кылымдагы жазмаларында Масжид-и-Джауза деп аталат. 1990-жылы калыбына келтирилген.',
+                place2: 'XVIII кылымдагы комплекс, Сулайман пайгамбардын вазиринин ысмы менен аталган. Фергана архитектуралык мектебинин салттарында курулган. Чынында, тарыхы XI кылымга барып такалат.',
+                place3: 'Арабдарга чейинки Ош доорунун тарых эстелиги (б.з.ч. III к. – б.з. VIII к.). Ош оазисынин эң байыркы коргондорунун бири болгон. Дувалдардын жана мунаралардын элементтери сакталып калган.',
+                place4: 'Ош тарыхындагы биринчи парк. Орус көчмөндөрү тарабынан 1919-жылы негизделген. Аянты 12 га, 20дан ашык дарак түрү бар. 2019-жылы реконструкцияланган.',
+                place5: 'Оштогу орус православдык архитектурасынын XX кылымдын башындагы жалгыз эстелиги. Иштеп жаткан храм.',
+                place6: 'XIX кылымдын 80-жылдарында курулган. Бул жерде 1943-жылдагы Сталиндин буйругу дубалга чегилип сакталган. 1978-жылы бул жерден Афганистанга биринчи батальон жөнөтүлгөн.',
+                factsTitle: 'КЫЗЫКТУУ ФАКТЫЛАР',
+                fact1Title: 'Аталышынын этимологиясы',
+                fact1: 'Уламыш боюнча, Сулайман пайгамбар колун жетектеп, бул жерди көрүп: «Хош!» («Токто!») – деп кыйкырган, бул шаарга аталыш берген. Дагы бир версиясы – перс тилиндеги «хош» (жагымдуу) дегенден.',
+                fact2Title: 'Оштун тандырлары',
+                fact2: 'Ошто тандырларды 2000 жылдан ашык убакыттан бери кол менен жасашат. Балчыкка кой же эчкинин жүнүн кошушат. Процесс үч күнгө созулат. Сулайман-Тоонун этегиндеги Сирожиддин Акромовдун устаканасы тандырларды Россияга да жөнөтөт.',
+                fact3Title: 'Ленин эстелиги',
+                fact3: 'Борбордук аянттагы В.И. Лениндин эстелиги — КМШ өлкөлөрүндө демонтаждалбаган жалгыз эстелик. Бийиктиги 23 метр, фигура Санкт-Петербургда куюлган.',
+                fact4Title: 'Чакка-Тамар үңкүрү',
+                fact4: 'Сулайман-Тоодогу ыйык үңкүр, «жаңырык үңкүрү» же «тамчылар үңкүрү» деп аталат. Андагы ар бир үн мистикалык мааниге ээ болот. Бул жерде балдардын көбөйүшүн суранууга болот деп эсептелет.',
+                cultureTitle: 'МАДАНИЯТ ЖАНА КАЛК',
+                nationalities: 'Улуттук курам',
+                cultureText1: 'Ошто ар кандай улуттардын өкүлдөрү жашашат: кыргыздар, өзбектер, орустар, түрктөр, татарлар, тажиктер жана башкалар. Шаар маданий эритме казаны болуп саналат, анда кыргыз жана өзбек салттары үстөмдүк кылат.',
+                religion: 'Дин',
+                cultureText2: 'Ош күчтүү ислам таасирине ээ, көптөгөн мечиттер жана медреселер бар. Шаарда ошондой эле православдык чиркөө дагы бар. Меймандостук бул жерде жашоо мыйзамы: чай жана нан — кыргыз меймандостугунун борбору.',
+                climateTitle: 'КЛИМАТ',
+                climateDesc: 'Шаардын климаты — континенталдык, кургак. Баруу үчүн эң жакшы убакыт — апрелден сентябрга чейин, температура +20°Cтан +33°Cка чейин. Кыш Кыргызстандын түндүгүнө салыштырмалуу жумшак.',
+                footerAbout: 'Шаар жөнүндө',
+                footerHistory: 'Тарых',
+                footerPlaces: 'Көрүнүктүү жерлер',
+                footerCulture: 'Маданият',
+                footerInfo: 'Маалымат',
+                footerClimate: 'Климат',
+                footerFacts: 'Кызыктуу фактылар',
+                footerGallery: 'Галерея',
+                footerMuseum: 'Музей',
+                footerMuseum1: 'Тарых-археологиялык',
+                footerMuseum2: 'Рухий маданият музейи',
+                footerMuseum3: 'Көркөм өнөр музейи',
+                footerHeritage: 'Мурас',
+                footerUnesco: 'ЮНЕСКО объектиси',
+                footerSilkroad: 'Улуу Жибек Жолу',
+                footerTraditions: 'Салттар',
+                footerCopyright: '© 2026 ОШ — ЖИБЕК ЖОЛУНДАГЫ 3000 ЖЫЛДЫК ТАРЫХ'
+            },
+            en: {
+                heroSubtitle: 'SOUTHERN CAPITAL OF KYRGYZSTAN',
+                heroDesc: 'City with 3000-year history, sacred Sulayman-Too mountain and crossroads of the Great Silk Road',
+                heroBtn: 'LEARN MORE',
+                aboutTitle: 'ABOUT THE CITY',
+                aboutText1: 'Osh is the second largest city in Kyrgyzstan, unofficially called the "southern capital". Located in the south of the country, in the foothills of the Alai Range, in the valley of the Ak-Buura River. It is one of the oldest cities in Central Asia with a history of more than 3000 years.',
+                aboutText2: 'The city is famous for its architecture, national cuisine, and unique natural monument - the sacred mountain Sulayman-Too, included in the UNESCO World Heritage List.',
+                population: 'population (2025)',
+                years: 'years of history',
+                area: 'km² area',
+                historyTitle: 'HISTORY',
+                history1: 'In the 10th century, Osh was considered the third largest city in Fergana, being the intersection of caravan routes from India and China to Europe. In the 11th-12th centuries it was part of the Turkic Karakhanid Khaganate.',
+                history2: 'In 1220, Osh was captured by the hordes of Genghis Khan and became part of the Chagatai Ulus. In the 1340s it became part of Mogolistan, and in the 1380s it became part of Timur\'s empire.',
+                history3: 'In 1876, after the conquest of the Kokand Khanate, Osh became part of the Russian Empire as the administrative center of the Osh district of the Fergana region.',
+                history4: 'In 1939 it became the center of the Osh region. During the Soviet years, the city turned into a major industrial center with cotton and silk mills.',
+                history5: 'In 2000, by decree of the President of Kyrgyzstan, the 3000th anniversary of Osh was solemnly celebrated. Since then, October 5 is celebrated as City Day.',
+                suleimanTitle: 'SULAYMAN-TOO',
+                suleimanDesc1: 'The main attraction of Osh is the sacred mountain Sulayman-Too ("Throne of Solomon"). It has been on the UNESCO World Heritage List since 2009. The mountain has been a place of pilgrimage for over a thousand years, sometimes called the "second Mecca".',
+                suleimanDesc2: 'Ancient Bronze Age agricultural settlements have been discovered on the slopes of the mountain. They are associated with the emergence of the city of Osh. Here are rock carvings associated with the cult of the mountain and fertility (13th-5th centuries BC).',
+                museumTitle: 'SULAYMAN-TOO MUSEUM',
+                museumSubtitle1: 'Historical and Archaeological Museum',
+                museumDesc1: 'The National Historical and Archaeological Museum Complex "Sulayman-Too" is one of the largest museums in Kyrgyzstan, located in a unique structure of the mountain cave complex. The museum was founded in 1949, the modern building was built in 1978 in honor of the 3000th anniversary of Osh. It is carved inside the mountain and is a glazed concrete arch.',
+                museumSubtitle2: 'Museum of Spiritual Culture',
+                museumDesc2: 'The only museum in Kyrgyzstan whose halls are located in the mountain cave complex (Rushan-Unkur cave). The exposition represents religions and beliefs that existed in the south of Kyrgyzstan for 3000 years. The culture of pre-Islamic beliefs is vividly represented.',
+                museumCollection: 'The museum collection contains about 35 thousand items of archaeology and ethnography, handicrafts, painting, sculpture and graphics.',
+                placesTitle: 'SIGHTS',
+                place1: 'The oldest surviving mosque in Osh. Built on the foundation of the 11th-12th centuries. In the notes of Babur of the 15th century it is referred to as Masjid-i-Jawza. Restored in 1990.',
+                place2: '18th century complex, named after the vizier of King Solomon. Built in the traditions of the Fergana architectural school. In fact, it has a deeper history dating back to the 11th century.',
+                place3: 'Historical monument of the pre-Arab Osh era (3rd century BC – 8th century AD). It was one of the oldest defensive fortresses of the Osh oasis. Elements of walls and towers have been preserved.',
+                place4: 'The first park in the history of Osh. Founded by Russian settlers in 1919. Area 12 hectares, more than 20 species of trees. Reconstructed in 2019.',
+                place5: 'The only monument of Russian Orthodox architecture of the early 20th century in Osh. Active church.',
+                place6: 'Built in the 80s of the 19th century. Here Stalin\'s order of 1943, carved on the wall, is preserved. In 1978, the first battalion was sent to Afghanistan from here.',
+                factsTitle: 'INTERESTING FACTS',
+                fact1Title: 'Etymology of the name',
+                fact1: 'According to legend, King Solomon (Sulayman) led an army and, seeing this place, shouted: "Kosh!" ("Stop!"), which gave the name to the city. Another version is from the Persian "khosh" (pleasant).',
+                fact2Title: 'Tandurs of Osh',
+                fact2: 'In Osh, tandurs have been made by hand for over 2000 years. Sheep or goat wool is added to the clay. The process takes three days. The workshop of Sirojiddin Akromov at the foot of Sulayman-Too sends tandurs even to Russia.',
+                fact3Title: 'Lenin Monument',
+                fact3: 'The monument to V.I. Lenin on the central square is the only one in the CIS that was not dismantled. Height 23 meters, the figure was cast in St. Petersburg.',
+                fact4Title: 'Chakka-Tamar Cave',
+                fact4: 'Sacred cave on Mount Sulayman-Too, called the "cave of echo" or "falling drops". Every sound in it acquires a mystical sound. It is believed that here you can ask for the birth of children.',
+                cultureTitle: 'CULTURE AND POPULATION',
+                nationalities: 'Ethnic composition',
+                cultureText1: 'Osh is home to representatives of different nationalities: Kyrgyz, Uzbeks, Russians, Turks, Tatars, Tajiks and others. The city is a cultural melting pot dominated by Kyrgyz and Uzbek traditions.',
+                religion: 'Religion',
+                cultureText2: 'Osh has a strong Islamic influence, many mosques and madrasahs. There is also an Orthodox church in the city. Hospitality is the law of life here: tea and bread are the center of Kyrgyz hospitality.',
+                climateTitle: 'CLIMATE',
+                climateDesc: 'The climate of the city is continental, arid. The best time to visit is from April to September, when the temperature is from +20 to +33°C. Winter is mild compared to northern Kyrgyzstan.',
+                footerAbout: 'About the city',
+                footerHistory: 'History',
+                footerPlaces: 'Sights',
+                footerCulture: 'Culture',
+                footerInfo: 'Information',
+                footerClimate: 'Climate',
+                footerFacts: 'Interesting facts',
+                footerGallery: 'Gallery',
+                footerMuseum: 'Museum',
+                footerMuseum1: 'Historical and Archaeological',
+                footerMuseum2: 'Museum of Spiritual Culture',
+                footerMuseum3: 'Museum of Fine Arts',
+                footerHeritage: 'Heritage',
+                footerUnesco: 'UNESCO Site',
+                footerSilkroad: 'Great Silk Road',
+                footerTraditions: 'Traditions',
+                footerCopyright: '© 2026 OSH — 3000 YEARS OF HISTORY ON THE SILK ROAD'
+            }
+        };
+
+        // Функция смены языка
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-key]').forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (translations[lang] && translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.placeholder = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+            
+            // Обновляем активный класс
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(`[data-lang="${lang}"]`).classList.add('active');
+        }
+
+        // Обработчики для языковых кнопок
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const lang = btn.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // Хедер при скролле
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(10,12,15,0.98)';
+                header.style.padding = '15px 0';
+            } else {
+                header.style.background = 'rgba(10,12,15,0.95)';
+                header.style.padding = '20px 0';
+            }
+        });
+
+        // Плавный скролл для якорей
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
